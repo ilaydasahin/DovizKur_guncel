@@ -1,0 +1,44 @@
+﻿@model DovizKur.Models.DovizKuru
+
+@{
+    ViewBag.Title = "Döviz Kuru";
+}
+
+<h2>Döviz Kuru</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label for="tarih">Tarih:</label>
+        <input type="date" name="tarih" id="tarih" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kur Ara</button>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-info">
+        @ViewBag.Message
+    </div>
+}
+
+@if (Model != null)
+{
+    <h3>@Model.Tarih.ToShortDateString()</h3>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Döviz Türü</th>
+            <th>Kur</th>
+        </tr>
+        <tr>
+            <td>Euro</td>
+            <td>@Model.EuroKuru</td>
+        </tr>
+        <tr>
+            <td>Dolar</td>
+            <td>@Model.DolarKuru</td>
+        </tr>
+    </table>
+}
